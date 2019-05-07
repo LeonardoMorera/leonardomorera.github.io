@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <title>Linkin Park Fanpage</title>
@@ -137,6 +138,8 @@
       <center><h2>Login</h2></center>
 
 
+
+
       <!-- Button to Open the Modal -->
       <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
         Confirmar
@@ -152,11 +155,38 @@
               <h4 class="modal-title">Login</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+            <body>
+                                        <form name="form1" id="form1">
 
+                                          URL:
+
+                                          <input type="text" id="endereco" name="endereco">
+
+                                          <br>
+
+                                          <input type="submit" value="ENVIAR">
+
+                                        </form>
+
+                                        <br><br>
+
+
+
+
+
+                                        <p id="p1"></p>
+
+                                        <p id="p2"></p>
+
+                                        <img id="p3" src="" />
+
+                                        <p id="p4"></p>
+                                      </body>
             <!-- Modal body -->
             <div class="modal-body">
               <div class="w3-col m6 w3-padding-large">
                 <h1 class="w3-center">Acesso de usuário</h1><br>
+
 
                 <p class="w3-large">
                   <form id="meuFormulario" action="pagina2.html">
@@ -170,7 +200,9 @@
 
 
               <input type="submit" value="Enviar">
+
               </form>
+
 
 
             </div>
@@ -187,6 +219,8 @@
             <div class="modal-footer">
 
             </div>
+
+
 
 
 
@@ -211,6 +245,49 @@
         }
       });
     });
+    $(document).ready(function() {
+
+
+
+    $('#form1').on('submit', function(e) {
+
+      e.preventDefault();
+
+
+
+      var api_url = 'https://api.linkpreview.net'
+
+      var key = '5ccb9525ad6e74755159c3ffa27fa10e40287ac64f332' // real
+
+      $.ajax({
+
+        url: api_url + "?key=" + key + "&q=" + $("#endereco").val(),
+
+        contentType: "application/json",
+
+        dataType: 'json',
+
+        success: function(result) {
+
+          $("#p1").text(result.title);
+
+          $("#p2").text(result.description);
+
+          $('#p3').attr('src', result.image);
+
+          $("#p4").text(result.url);
+
+        }
+
+      });
+
+
+
+    });
+
+
+
+  });
   </script>
 </body>
 
